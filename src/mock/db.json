@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "first_name": "Shana",
+      "last_name": "Tyler",
+      "birthday": "10.09.1990",
+      "address": "260 Hudson Avenue, Gerton, Alaska, 1357",
+      "phone_number": "+1 (853) 436-2128"
+    },
+    {
+      "first_name": "Daniel",
+      "last_name": "Jhone",
+      "birthday": "11.09.1991",
+      "address": "601 Micieli Place, Gasquet, Georgia, 4526",
+      "phone_number": "+1 (910) 434-3248"
+    },
+    {
+      "first_name": "Henry",
+      "last_name": "Bennett",
+      "birthday": "31.08.1988",
+      "address": "653 Atkins Avenue, Roeville, Tennessee, 9964",
+      "phone_number": "+1 (843) 450-3427"
+    }
+    
+  ]
+}
