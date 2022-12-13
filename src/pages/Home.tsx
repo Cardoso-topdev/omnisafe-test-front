@@ -1,4 +1,3 @@
-import RecipeTable from 'components/RecipeTable';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RecipeApis } from 'service/api-service';
@@ -11,29 +10,24 @@ import MainLayout from '../layouts/MainLayout';
  * Pulling data from the mock server and dispatch data into the store
  */
 const Home: React.FC = () => {
-  
-  const recipes = useSelector((state: StoreValue) => state.recipeReducer.recipes)
-  const dispatch = useDispatch()
+  const recipes = useSelector((state: StoreValue) => state.recipeReducer.recipes);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getRecipes = async (): Promise<void> => {
       try {
-        const recipesRes: Array<RecipeRawType> = await RecipeApis.getRecipes()
-        dispatch(setRecipes(recipesRes))
+        const recipesRes: Array<RecipeRawType> = await RecipeApis.getRecipes();
+        dispatch(setRecipes(recipesRes));
       } catch (e: any) {
-        console.log('Get Recipes Error : ', e.response?.data?.message)
+        console.log('Get Recipes Error : ', e.response?.data?.message);
       }
-    }
+    };
     if (recipes.length === 0) {
-      getRecipes()
+      getRecipes();
     }
-  }, [dispatch, recipes.length])
+  }, [dispatch, recipes.length]);
 
-  return (
-    <MainLayout>
-      <RecipeTable isFavorite={false}/> 
-    </MainLayout>
-  );
+  return <MainLayout>Home page</MainLayout>;
 };
 
 export default Home;

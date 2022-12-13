@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
   // palette: {
@@ -13,10 +13,10 @@ export const theme = createTheme({
       sm: 600,
       md: 900,
       lg: 1200,
-      xl: 1536,
+      xl: 1536
     }
   },
   typography: {
     fontSize: 16
   }
-})
+});

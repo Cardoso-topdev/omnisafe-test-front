@@ -1,20 +1,20 @@
 export interface RecipeRawType {
-  id: Number,
-  name: String,
-  createdAt: Date,
-  creatorName: String,
-  cookingTime: Number,
-  ingredients: Array<String>,
-  instructions: Array<String>
+  id: number;
+  name: string;
+  createdAt: Date;
+  creatorName: string;
+  cookingTime: number;
+  ingredients: Array<string>;
+  instructions: Array<string>;
 }
 
 export interface RecipeType extends RecipeRawType {
-  favorite: Boolean
+  favorite: boolean;
 }
 
 export interface StoreType {
-  recipes: Array<RecipeType>
+  recipes: Array<RecipeType>;
 }
 export interface StoreValue {
-  recipeReducer: StoreType
+  recipeReducer: StoreType;
 }
