@@ -10,7 +10,9 @@ const Header: React.FC = () => {
       <AppBar>
         <Toolbar>
           <Link href="/" sx={{ textDecoration: 'none', flexGrow: 1 }}>
-            <Typography sx={{ color: 'white', fontWeight: '600' }}>Omnisafe Test</Typography>
+            <Typography sx={{ color: 'white', fontWeight: '600' }}>
+              Omnisafe Test
+            </Typography>
           </Link>
         </Toolbar>
       </AppBar>

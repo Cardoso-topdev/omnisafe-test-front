@@ -1,7 +1,13 @@
-import { BASE_URL, httpClient } from './http-client';
+import { IUser } from 'types';
+import { httpClient } from './http-client';
 
-export const RecipeApis = {
-  getRecipes: async () => {
-    return await httpClient.get(`${BASE_URL}recipes`);
+const BASE_URL = 'http://localhost:3001/';
+
+export const omnisafeAPIs = {
+  signUp: async (params: IUser) => {
+    return await httpClient.post(`${BASE_URL}sign-up`, params);
+  },
+  signIn: async (params: { email: string; password: string }) => {
+    return await httpClient.post(`${BASE_URL}sign-in`, params);
   }
 };

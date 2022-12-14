@@ -1,49 +1,60 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RecipeRawType, RecipeType, StoreType } from 'types/recipe';
+import { IUser, IStoreType } from 'types';
 
-export interface ReducerLikeActionType {
-  payload: RecipeType;
+interface IReducerSetUserActionType {
+  payload: IUser;
 }
 
-export interface ReducerSetRecipesActionType {
-  payload: Array<RecipeRawType>;
+interface ITokenPayload {
+  payload: string;
 }
 
-let initRecipeValueFromLocalStorage: Array<RecipeType> = [];
+interface IShowAlertPayload {
+  payload: {
+    showAlert: boolean;
+    alertMsg: string;
+    alertIsSuccess: boolean;
+  };
+}
+
+let initStoreValueFromLocalStorage: IUser = {
+  username: '',
+  surname: '',
+  email: ''
+};
+
 const localStorageData = window.localStorage.getItem('MY_APP_STATE');
+const localToken = window.localStorage.getItem('APP_TOKEN');
 if (localStorageData) {
-  initRecipeValueFromLocalStorage = JSON.parse(localStorageData);
+  initStoreValueFromLocalStorage = JSON.parse(localStorageData);
 }
 
 export const reduxSlice: any = createSlice({
   name: 'reduxSlice',
   initialState: {
-    recipes: initRecipeValueFromLocalStorage
+    user: initStoreValueFromLocalStorage,
+    token: localToken ? localToken : '',
+    showAlert: false,
+    alertMsg: '',
+    alertIsSuccess: true
   },
   reducers: {
-    like: (state: StoreType, action: ReducerLikeActionType) => {
-      state.recipes = state.recipes.map((item) => {
-        if (item.id === action.payload.id) {
-          return {
-            ...item,
-            favorite: !action.payload.favorite
-          };
-        } else {
-          return item;
-        }
-      });
-      window.localStorage.setItem('MY_APP_STATE', JSON.stringify(state.recipes));
+    setUser: (state: IStoreType, action: IReducerSetUserActionType) => {
+      state.user = action.payload;
+      window.localStorage.setItem('MY_APP_STATE', JSON.stringify(state.user));
     },
-    setRecipes: (state: StoreType, action: ReducerSetRecipesActionType) => {
-      state.recipes = action.payload.map((item) => ({
-        ...item,
-        favorite: false
-      }));
-      window.localStorage.setItem('MY_APP_STATE', JSON.stringify(state.recipes));
+    setToken: (state: IStoreType, action: ITokenPayload) => {
+      state.token = action.payload;
+      window.localStorage.setItem('APP_TOKEN', JSON.stringify(state.token));
+    },
+    showAlertMsg: (state: IStoreType, action: IShowAlertPayload) => {
+      state.showAlert = action.payload.showAlert;
+      state.alertMsg = action.payload.alertMsg;
+      state.alertIsSuccess = action.payload.alertIsSuccess;
     }
   }
 });
 
-export const { like, setRecipes } = reduxSlice.actions;
+export const { setUser, setToken, showAlertMsg } = reduxSlice.actions;
 
 export default reduxSlice.reducer;

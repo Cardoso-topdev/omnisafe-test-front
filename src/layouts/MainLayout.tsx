@@ -6,10 +6,14 @@ import Header from '../components/Header';
 /**
  * MainLayout is using on the all pages
  */
-const MainLayout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
+const MainLayout: React.FC<PropsWithChildren<{ hasHeader?: boolean }>> = ({
+  children,
+  hasHeader = true
+}) => {
+  // const dispatch = useDispatch();
   return (
     <Box component={'div'}>
-      <Header />
+      {hasHeader && <Header />}
       <Box m={10}>{children}</Box>
     </Box>
   );

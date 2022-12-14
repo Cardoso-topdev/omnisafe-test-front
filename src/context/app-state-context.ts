@@ -1,12 +1,16 @@
 import { createContext } from 'react';
-import { RecipeType } from 'types/recipe';
+import { IUser } from 'types';
 
 export interface AppState {
-  recipes: Array<RecipeType>;
+  user: IUser;
 }
 
 export const initialState: AppState = {
-  recipes: []
+  user: {
+    username: '',
+    surname: '',
+    email: ''
+  }
 };
 
 const AppStateContext = createContext<AppState>(initialState);

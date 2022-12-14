@@ -38,6 +38,7 @@
     "mock": "json-server --watch src/mock/db.json",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
+    "lint-fix": "eslint --fix './**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions"
   },

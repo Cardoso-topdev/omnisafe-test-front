@@ -5,7 +5,7 @@
 > - Structured the whole project with layouts, pages, components, types and so on.
 > - Made a APIs and callAPI services for CRUD operations.
 > - Setup redux flow to the project for managing application states.
-> - Write and load the state value to the localstorage for keeping the application state even the application refreshed.
+> - Integrate eslint and prettier.
 
 ## Launch Script
 
