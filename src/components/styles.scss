@@ -1,0 +1,16 @@
+.header-nav-toolbar {
+  justify-content: space-between;
+  a {
+    color: unset;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.nav-sign-out {
+  display: flex;
+  text-decoration: none;
+  color: unset;
+  align-items: center;
+}

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IUser, IStoreType } from 'types';
+import { IUser, IStoreType, IEventType, IEvent } from 'types';
 
 interface IReducerSetUserActionType {
   payload: IUser;
@@ -15,6 +15,14 @@ interface IShowAlertPayload {
     alertMsg: string;
     alertIsSuccess: boolean;
   };
+}
+
+interface IEventsPayload {
+  payload: Array<IEventType>;
+}
+
+interface ISubscribePayload {
+  payload: IEventType;
 }
 
 let initStoreValueFromLocalStorage: IUser = {
@@ -36,7 +44,9 @@ export const reduxSlice: any = createSlice({
     token: localToken ? localToken : '',
     showAlert: false,
     alertMsg: '',
-    alertIsSuccess: true
+    alertIsSuccess: true,
+    eventTypes: [],
+    events: []
   },
   reducers: {
     setUser: (state: IStoreType, action: IReducerSetUserActionType) => {
@@ -51,10 +61,40 @@ export const reduxSlice: any = createSlice({
       state.showAlert = action.payload.showAlert;
       state.alertMsg = action.payload.alertMsg;
       state.alertIsSuccess = action.payload.alertIsSuccess;
+    },
+    logout: (state: IStoreType) => {
+      state.user = {
+        username: '',
+        surname: '',
+        email: ''
+      }
+      window.localStorage.clear();
+    },
+    setEvents: (state: IStoreType, action: IEventsPayload) => {
+      let events: Array<IEvent> = []
+      state.eventTypes = action.payload.map((eventTypeItem: IEventType) => ({
+        id: eventTypeItem.id,
+        name: eventTypeItem.name,
+        subscribed: true
+      }))
+      for (let idx = 0; idx < action.payload.length; idx++) {
+        const eventItem = action.payload[idx];
+        events = [...events, ...(eventItem.events as Array<IEvent>)];
+      }
+      state.events = events;
+    },
+    subscribeEventType: (state: IStoreType, action: ISubscribePayload) => {
+      state.eventTypes = state.eventTypes.map( eventTypeItem => {
+        if (action.payload.id === eventTypeItem.id) {
+          return {...eventTypeItem, subscribed: !eventTypeItem.subscribed}
+        } else {
+          return eventTypeItem;
+        }
+      })
     }
   }
 });
 
-export const { setUser, setToken, showAlertMsg } = reduxSlice.actions;
+export const { setUser, setToken, showAlertMsg, logout, setEvents, subscribeEventType } = reduxSlice.actions;
 
 export default reduxSlice.reducer;

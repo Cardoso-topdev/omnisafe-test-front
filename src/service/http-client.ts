@@ -53,4 +53,3 @@ class HttpClient {
 }
 
 export const httpClient = HttpClient.getInstance();
-// export const BASE_URL = 'http://localhost:3001/';

@@ -9,5 +9,11 @@ export const omnisafeAPIs = {
   },
   signIn: async (params: { email: string; password: string }) => {
     return await httpClient.post(`${BASE_URL}sign-in`, params);
+  },
+  getEventTypes: async () => {
+    const token = 'bearer ' + window.localStorage.getItem('APP_TOKEN') || '';
+    return await httpClient.get(`${BASE_URL}event-types`, {}, {
+      authorization: token 
+    })
   }
 };

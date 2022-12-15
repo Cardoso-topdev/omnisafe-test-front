@@ -6,6 +6,8 @@
 > - Made a APIs and callAPI services for CRUD operations.
 > - Setup redux flow to the project for managing application states.
 > - Integrate eslint and prettier.
+> - Sign In and Sign Up.
+> - Snackbar for showing API response.
 
 ## Launch Script
 
