@@ -8,6 +8,7 @@
 > - Integrate eslint and prettier.
 > - Sign In and Sign Up.
 > - Snackbar for showing API response.
+> - ...
 
 ## Launch Script
 
